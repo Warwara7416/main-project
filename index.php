@@ -24,6 +24,11 @@
   <input type="submit"  value="Добавить">
 </form>
 
+<form id="form-insert-groups">
+  <input type="text"   name="title" id="title" placeholder="Введите название группы" required><br>
+  <input type="submit" value="Добавить">
+</form>
+
 <div class="content">
 <?php
 
@@ -50,6 +55,19 @@ while ($row = $result->fetch_assoc())
 {
   echo "<div>
           $row[lname], $row[fname], $row[sex], $row[age]
+        </div>";
+}
+
+//Код запроса
+$sqlGroups = "SELECT * FROM `groups`";
+
+$resultGroups = $connect->query($sqlGroups);
+
+//Вывести результаты запроса на страницу
+while ($row = $resultGroups->fetch_assoc())
+{
+  echo "<div>
+          $row[title]
         </div>";
 }
 ?>
