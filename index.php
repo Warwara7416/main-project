@@ -4,11 +4,18 @@ header("Content-Type:text/html; charset=UTF-8");
 require_once("api/config.php");
 require_once("api/core.php");
 
-if (file_exists("api/main.php")) {  //Если файл существует
-  include("api/main.php");          //То подключаем
+if (isset($_GET["option"])) {
+  $class = trim(strip_tags($_GET["option"]));
+}
+else {
+  $class = "main";
+}
 
-  if (class_exists("Main")) {       //Если класс существует
-    $obj = new Main;                //Создаем объект от класса Main
+if (file_exists("api/".$class.".php")) {  //Если файл существует
+  include("api/".$class.".php");          //То подключаем
+
+  if (class_exists($class)) {       //Если класс существует
+    $obj = new $class;                //Создаем объект от класса Main
     $obj->get_body();
   }
   else {
