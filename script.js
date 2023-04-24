@@ -4,6 +4,8 @@ const msgGroups = document.querySelector(".message");
 const content = document.querySelector(".content");
 const formInsertGroups = document.getElementById("form-insert-groups");
 
+
+//Отправка данных через форму
 formInsert.addEventListener("submit", (event) => {
   event.preventDefault();   //отменяем стандартную отправную форму
   console.log("ok");
@@ -72,3 +74,35 @@ formInsertGroups.addEventListener("submit", (event) => {
   };
 
 });
+
+
+//Отправка данных без формы - метод get
+//Лайки
+const btnsLike = document.querySelectorAll(".like");
+
+function setLike (str1, str2) {
+  return function(event) {
+  let idStudent = event.target.closest(".student").dataset.id;
+  let xhr       = new XMLHttpRequest();
+
+  xhr.open("GET", "api/setLike.php?id=" + idStudent);
+
+  xhr.onload = function() {
+    if(xhr.response=="ok like") {
+      let num = +event.target.closest(".student").querySelector(".num-like").textContent;
+
+      event.target.closest(".student").querySelector(".num-like").textContent = num + 1;
+      console.log(str1);
+    }
+    else {
+      console.log(str2);
+    }
+  }
+
+  xhr.send();
+}
+}
+
+for (btn of btnsLike) {
+  btn.addEventListener("click", setLike("Успешно", "Ошибка"));
+}

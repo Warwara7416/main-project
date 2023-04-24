@@ -20,8 +20,8 @@ $sqlGroups = "INSERT INTO `groups`(`title`) VALUES ('$title')";
 $resultGroups = $connect->query($sqlGroups);
 
 if ($resultGroups) {
-  echo "ok";
+  echo "ok groups";
 }
 else {
-  echo "error";
+  echo "error groups";
 }

@@ -1,10 +1,4 @@
 <?php
-$fname = $_POST["fname"];
-$lname = $_POST["lname"];
-$age   = $_POST["age"];
-$sex   = $_POST["sex"];
-
-
 require_once ("config.php");
 
 //Соединение с Базой Данных
@@ -17,16 +11,17 @@ if($connect->connect_error) {
 //Установка кодировки
 $connect->set_charset("utf8");
 
-//Код запроса
-$sql = "INSERT INTO `students`(`fname`, `lname`, `sex`, `age`) VALUES ('$fname','$lname','$sex', $age)";
+$id = $_GET['id'];
 
-//Выполнение запроса
+$sql = "UPDATE `students` SET `num_like`= `num_like` + 1 WHERE `student_id` = $id";
+
 $result = $connect->query($sql);
 
 if ($result) {
-  echo "ok student";
+  echo "ok like";
 }
 else {
-  echo "error student";
+  echo "error like";
 }
+
 ?>
