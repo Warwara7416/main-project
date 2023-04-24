@@ -14,7 +14,7 @@ else {
 if (file_exists("api/".$class.".php")) {  //Если файл существует
   include("api/".$class.".php");          //То подключаем
 
-  if (class_exists($class)) {       //Если класс существует
+  if (class_exists($class)) {         //Если класс существует
     $obj = new $class;                //Создаем объект от класса Main
     $obj->get_body();
   }
