@@ -7,7 +7,7 @@
   <input type="radio" id="desc_sort" name="sort" value="desc">
   <label for="desc_sort">По убыванию</label><br>
 
-  <input type="radio" id="asc_sort" name="sort" value="asc">
+  <input type="radio" id="asc_sort"  name="sort" value="asc">
   <label for="asc_sort">По возрастанию</label><br>
 
   <input type="submit" value="Фильтровать">
@@ -15,17 +15,6 @@
 
 <?php
 $extra_sql  = " ";
-
-// if (isset($_POST['sort'])) {
-//   if(isset($_POST['desc'])) {
-//     ksort($result);
-//   }
-
-//   if(isset($_POST['asc'])) {
-
-//     $extra_sql = "krsort($result)";
-//   }
-// }
 
 if (isset($_POST['age'])) {
   $age       = $this -> formatstr($_POST['age']);
@@ -38,10 +27,26 @@ $sql = "SELECT * FROM `students`".$extra_sql;
 //Выполнить запрос
 $result = $this->connect->query($sql);
 
+
+
+
+
+//Сортировка по возрастанию/убыванию (сделать через SQL ORDER BY)
+if (isset($_POST['sort'])) {
+  if ($_POST['desc']) {
+    echo "hello";
+  }
+}
+
+
+
+
+
+
 //Вывести результаты запроса на страницу
 while ($row = $result->fetch_assoc()) {
   echo "<div>
-          <a href='?option=details&id=$row[student_id]'></a>$row[lname], $row[fname], $row[sex], $row[age]
+          <a href='?option=details&id=$row[student_id]'>$row[lname]</a>, $row[fname], $row[sex], $row[age]
         </div>";
 }
 ?>

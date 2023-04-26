@@ -6,7 +6,6 @@ class Details extends Core {
       $id = $this -> formatstr($_GET['id']);
       include ("modules/mod_detail.php");
     }
-
     else {
       echo "<p>Некорректные данные</p>";
     }
