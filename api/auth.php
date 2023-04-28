@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once ("config.php");
 
 //Соединение с Базой Данных
@@ -30,6 +31,7 @@ if ($row = $result->fetch_assoc()) {
     "name"    =>  $row["name"],
     "login"   =>  $row["login"]
   ];
+  $_SESSION["user-name"] = $row["name"];
 }
 else {
   $response = [

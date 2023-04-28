@@ -19,7 +19,7 @@ async function auth(event) {
   console.log(json);
 
   if (json.status) {
-    output.innerHTML = "Вы авторизованы как " + json.name;
+    output.innerHTML = "Вы авторизованы как " + json.name + "<a href='profile.php'>Профиль</a>";
     formAuth.style.display = "none";
   }
   else {
