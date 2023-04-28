@@ -25,10 +25,10 @@ $result->execute();
 $result = $result->get_result();
 
 if ($row = $result->fetch_assoc()) {
-  echo "Пользователь авторизован";
+  echo true;
 }
 else {
-  echo "Логин или пароль не верен";
+  echo false;
 }
 
 ?>
