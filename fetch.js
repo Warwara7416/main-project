@@ -8,14 +8,16 @@ function auth(event) {
   let data = new FormData(formAuth);
   fetch("api/auth.php", {
     method: 'POST',
+    'Content-Type': 'application/json',
     body: data
   }).then(
     (response) => {
-      return response.text();
+      return response.json();
   }).then(
-      (text) => {
-        if (text) {
-          output.innerHTML = "Вы авторизованы";
+      (json) => {
+        console.log(json);
+        if (json.status) {
+          output.innerHTML = "Вы авторизованы как " + json.name;
           formAuth.style.display = "none";
         }
         else {
